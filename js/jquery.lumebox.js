@@ -180,7 +180,7 @@
                 if (this.href.search(/(\.jpg|\.jpeg|\.gif|\.png)$/i) != -1) {
                     var arrayIndex, lItem = new lumeboxItem();
                     // Createn new lumeboxItem in the form of an image and add to the list
-					if (!$(this).attr("class").match($.lumebox.settings.noCaptionClass)) lItem.content = this.title;
+					if ($(this).attr("class") && !$(this).attr("class").match($.lumebox.settings.noCaptionClass)) lItem.content = this.title;
                     lItem.link = this.href;
 
                     // Push to the right group
@@ -258,30 +258,37 @@
                 var contentWidth = (singleImg) ? singleImg.attr("width") : windowWidth;
 				
 				// Check if single image is bigger than the window, if it is, scale it down
-				if (singleImg) {
-					var imgRatio = singleImg.attr("width") / singleImg.attr("height");
-					
-					if (singleImg[0].naturalWidth + 2*margin > windowWidth) {
-						singleImg.attr("width",windowWidth);
-						singleImg.attr("height", windowWidth / imgRatio);
-						contentWidth = windowWidth;
-					}else {
-						singleImg.attr("width", singleImg[0].naturalWidth);
-						singleImg.attr("height", singleImg[0].naturalWidth / imgRatio);
-					}
-					
-					if (singleImg.outerHeight(true) + captionHeight + 2*margin >= windowHeight) {
-						var newImgHeight = windowHeight - captionHeight - 2*margin;
-						singleImg.attr("height",newImgHeight);
-						singleImg.attr("width",newImgHeight * imgRatio);
-						contentWidth = singleImg.outerHeight(true) * imgRatio;
-					} else {
-						contentWidth = singleImg.attr("width");
-					}
-				} else {
-					// if not single image, set the width to predefined value
-					contentWidth = $.lumebox.settings.rssWidth;
-				}
+                if (singleImg) {
+                    var imgRatio = singleImg.attr("width") / singleImg.attr("height");
+                    var newWidth = 0;
+                    var newHeight = 0;
+
+                    if (singleImg[0].naturalWidth + 2*margin > windowWidth) {
+                        newWidth = windowWidth;
+                        newHeight = windowWidth / imgRatio;
+
+                        contentWidth = windowWidth;
+                    }else {
+                        newWidth = singleImg[0].naturalWidth;
+                        newHeight = singleImg[0].naturalWidth / imgRatio;
+                    }
+
+                    if (newHeight + captionHeight + 2*margin >= windowHeight) {
+                        var newImgHeight = windowHeight - captionHeight - 2*margin;
+                        newHeight = newImgHeight;
+                        newWidth = newImgHeight * imgRatio;
+
+                        contentWidth = newHeight * imgRatio;
+                    } else {
+                        contentWidth = newWidth;
+                    }
+
+                    singleImg.attr("width",newWidth);
+                    singleImg.attr("height", newHeight);
+                } else {
+                    // if not single image, set the width to predefined value
+                    contentWidth = $.lumebox.settings.rssWidth;
+                }
 				
 				// Check contentWidth, if it's zero then set it to windowWidth
 				if (contentWidth < 1) contentWidth = windowWidth;
