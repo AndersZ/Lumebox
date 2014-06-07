@@ -1,6 +1,6 @@
 /* Lumebox jQuery plugin
- * Copyright Anders Zakrisson/Sogeti 2009-2010
- * http://anders.zakrisson.se, http://www.sogeti.se
+ * Copyright Anders Långberg (Zakrisson) 2009-2014
+ * https://github.com/AndersZ/Lumebox
  * This software is released under the GPL License.
  */
  
@@ -21,7 +21,7 @@
     top: 0;
     left: 0;
     background: #000;
-    z-index: 11;
+    z-index: 101;
 }
 
 #lumebox-loading {
@@ -30,7 +30,7 @@
 	bottom: 1em;
 	background-color: #111;
 	padding: 0.5em;
-	z-index: 13;
+	z-index: 103;
 	color: #aaa;
 	-webkit-box-shadow: 2px 2px 14px #000;
 	-moz-box-shadow: 1px 1px 12px #000;
@@ -45,7 +45,7 @@
 #lumebox-popup {
     display: none;
     position: absolute;
-    z-index: 12;
+    z-index: 102;
 	margin: 20px;
 	-webkit-box-shadow: 2px 2px 14px #000;
 	-moz-box-shadow: 1px 1px 12px #000;
@@ -55,7 +55,7 @@
 #lumebox-popup.mobile {
     display: none;
     position: absolute;
-    z-index: 12;
+    z-index: 102;
 	margin: 0;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -66,7 +66,7 @@
 	position: absolute;
 	width: 100%;
 	height: 30px;
-	z-index: 14;
+	z-index: 104;
 	padding: 5px 0 0 5px;
 }
 
@@ -78,7 +78,8 @@
 
 #lumebox-counter {
 	float: right;
-	font: 2em "Century Gothic", sans-serif;
+	padding-right: 1em;
+	font: 1.2em "Century Gothic", sans-serif;
 	color: #ccc;
 }
 
@@ -87,7 +88,7 @@
 	_position: absolute; /* hack for internet explorer 6*/
 	top: 0px;
 	left: 0px;
-	z-index: 14;
+	z-index: 104;
 	padding: 5px 0 0 5px;
 }
 
@@ -105,7 +106,7 @@
 	height: 100%;
 	width: 50%;
 	min-height: 30px;
-	z-index: 13;
+	z-index: 103;
 }
 
 #lumebox-next {
@@ -116,12 +117,12 @@
 	height: 100%;
 	width: 50%;
 	min-height: 30px;
-	z-index: 13;
+	z-index: 103;
 }
 
 #lumebox-content {
     margin: 0 auto;
-    z-index: 12;
+    z-index: 102;
 	color: #ccc;
 	position: relative;
 }
